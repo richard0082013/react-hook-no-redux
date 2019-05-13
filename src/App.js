@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from "react";
+import { Store } from "./Store";
+import "./index.css";
+import { Link } from "@reach/router";
+export default function App(props) {
+  const { state } = React.useContext(Store);
 
-function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <Fragment>
+      <header className="header">
+        <div>
+          <h1>Rick and Morty</h1>
+          <p>Pick your favourite episodes</p>
+        </div>
+        <div>
+          <Link to="/">Home</Link>{" "}
+          <Link to="/faves">Favourite(s) {state.favourites.length}</Link>
+        </div>
       </header>
-    </div>
+      {props.children}
+    </Fragment>
   );
 }
-
-export default App;
